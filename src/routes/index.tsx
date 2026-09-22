@@ -1,24 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ShopHome } from "@/components/shop/shop-home";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "EssenciaShop — Accesorios y tecnología para tu día a día" },
+      { name: "description", content: "Descubre accesorios para teléfonos, audio, carga y tecnología seleccionada con envío a todo el país." },
+      { property: "og:title", content: "EssenciaShop — Tecnología que encaja contigo" },
+      { property: "og:description", content: "Accesorios tecnológicos seleccionados para mejorar tu día a día." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: ShopHome,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
