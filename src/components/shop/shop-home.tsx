@@ -1,4 +1,5 @@
 import { useMemo, useState, type FormEvent } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight, BadgeCheck, BatteryCharging, Cable, Car, Check, ChevronDown,
   Gamepad2, Headphones, Heart, Instagram, Menu, Minus, PackageCheck, Plus,
@@ -14,7 +15,7 @@ import casesImage from "@/assets/product-cases.jpg";
 import chargingImage from "@/assets/product-charging.jpg";
 
 const money = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
-const categoryIcons = [Smartphone, Cable, Headphones, BatteryCharging, Watch, Car, Gamepad2, Sparkles];
+const categoryIcons: LucideIcon[] = [Smartphone, Cable, Headphones, BatteryCharging, Watch, Car, Gamepad2, Sparkles];
 
 export function ShopHome() {
   const [search, setSearch] = useState("");
@@ -110,7 +111,7 @@ export function ShopHome() {
         <section id="categorias" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
           <SectionHeading eyebrow="Explora lo esencial" title="Encuentra lo que necesitas" action="Ver productos" href="#productos" />
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-            {categories.slice(1).map((category, index) => { const Icon = categoryIcons[index]; return <button key={category} onClick={() => chooseCategory(category)} className="group flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card px-3 py-5 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-glass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><span className="grid size-12 place-items-center rounded-xl bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground"><Icon className="size-5" /></span><span className="text-xs font-bold leading-4">{category}</span></button>; })}
+            {categories.slice(1).map((category, index) => { const Icon = categoryIcons[index] ?? Sparkles; return <button key={category} onClick={() => chooseCategory(category)} className="group flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-card px-3 py-5 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-glass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><span className="grid size-12 place-items-center rounded-xl bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground"><Icon className="size-5" /></span><span className="text-xs font-bold leading-4">{category}</span></button>; })}
           </div>
         </section>
 
